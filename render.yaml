@@ -1,0 +1,20 @@
+# Render Deployment Configuration
+# This config includes a web service and a cron job for uptime monitoring.
+
+services:
+  - type: web
+    name: my-web-service
+    env: node
+    url: https://myapp.example.com
+    buildCommand: npm install
+    startCommand: npm start
+
+cronJobs:
+  - name: uptime-monitor
+    url: https://myapp.example.com/health
+    schedule: "every 5 minutes"
+    httpMethod: GET
+    notifications:
+      - email: alert@example.com
+        onSuccess: true
+        onFailure: true
