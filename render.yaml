@@ -1,20 +1,10 @@
-# Render Deployment Configuration
-# This config includes a web service and a cron job for uptime monitoring.
-
 services:
-  - type: web
-    name: my-web-service
-    env: node
-    url: https://myapp.example.com
-    buildCommand: npm install
-    startCommand: npm start
+  web:
+    type: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
 
-cronJobs:
-  - name: uptime-monitor
-    url: https://myapp.example.com/health
-    schedule: "every 5 minutes"
-    httpMethod: GET
-    notifications:
-      - email: alert@example.com
-        onSuccess: true
-        onFailure: true
+cron:
+  - name: "Uptime Monitoring"
+    schedule: "every 10 minutes"
+    url: https://hotmail-api-inbox.onrender.com/health
