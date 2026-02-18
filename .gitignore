@@ -1,0 +1,20 @@
+# Byte compiled files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+.Python
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Virtual environment
+venv/
+.env
+
+# Pytest
+.cache
+
+# Jupyter Notebook
+.ipynb_checkpoints/
